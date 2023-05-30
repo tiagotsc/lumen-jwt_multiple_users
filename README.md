@@ -312,7 +312,7 @@ composer install
 php artisan migrate
 
 # Registra o usuário de teste
-php artisan db:seed
+php artisan db:seed --class=AdminSeeder
 
 # Dados do banco de dados
 Usuário: lumen_api
