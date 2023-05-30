@@ -243,7 +243,7 @@ class AssignGuard
 }
 ````
 
-Depois registre esse middleware no arquivo **bootstrap/app.php**.
+Depois registre esse **middleware** no arquivo **bootstrap/app.php**.
 
 ````php
 $app->routeMiddleware([ # Procure esse bloco
