@@ -214,7 +214,45 @@ return [
 ];
 ````
 
-5 - Agora é só adicionar as rotas no arquivo **routes/web.php**.
+5 - Vamos criar o middleware que fará o lumen selecionar o **guard** correto por rota.
+
+Na pasta **app/Http/Middleware**, crie o arquivo **AssignGuard.php**, com o conteúdo.
+
+````php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class AssignGuard
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if($guard != null)
+            auth()->shouldUse($guard);
+        return $next($request);
+    }
+}
+````
+
+Depois registre esse middleware no arquivo **bootstrap/app.php**.
+
+````php
+$app->routeMiddleware([ # Procure esse bloco
+    ... # Adicione a linha abaixo
+    'assign.guard' => \App\Http\Middleware\AssignGuard::class
+]);
+````
+
+6 - Agora é só adicionar as rotas no arquivo **routes/web.php**.
 
 ````php
 $router->group(['prefix' => 'api/v1/admin'], function () use ($router) {
