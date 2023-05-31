@@ -29,11 +29,12 @@ $router->group(['prefix' => 'api/v1/user'], function () use ($router) {
     
 });
 
-$router->group(['prefix' => 'api/v1/admin'], function () use ($router) {
+$router->group(['prefix' => 'api/v1/admin', 'middleware' => ['assign.guard:admin']], function () use ($router) {
 
-    $router->group(['middleware' => ['assign.guard:admin']], function () use ($router) {
+    $router->post('login', 'AuthJWTController@login');
 
-        $router->post('login', 'AuthJWTController@login');
+    $router->group(['middleware' => ['jwt.auth']], function () use ($router) {
+
         $router->post('logout', 'AuthJWTController@logout');
         $router->post('refresh', 'AuthJWTController@refresh');
         $router->post('profile', 'AuthJWTController@profile');
