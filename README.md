@@ -1,7 +1,7 @@
 ﻿
 ## Lumen 10 - Antenticação JWT
 
-Passo a passo de autenticação JWT na API Lumen 10 para um multiplos tipos de usuários.
+Passo a passo de autenticação JWT na API Lumen 10 para multiplos tipos de usuários.
 
 Será adicionado o usuário do tipo **Admin** que fará autenticação da mesma forma que outros usuários usando a mesma **API**, inclusive é possível adicionar diversos tipos de usuários, se necessário.
 
